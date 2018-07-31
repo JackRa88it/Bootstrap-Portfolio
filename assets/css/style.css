@@ -42,6 +42,7 @@ h3 {
 }
 
 .masthead {
+    z-index: 99;
     position: fixed;
     width: 100%;
     background: #fff;
@@ -67,11 +68,11 @@ nav a {
     text-decoration: none;
     border-left: 1px solid #efefef;
 }
-
+/* had to change to nth-child(2) since the Logo is now first-child */
 nav a:nth-child(2) {
     border-left: none;
 }
-
+/* had to overwrite bootstraps default blue hover color */
 nav a:hover {
     color: #777;
 }
@@ -141,14 +142,20 @@ footer {
 
 .work {
     position: relative;
-    float: left;
     width: 274px;
-    margin: 20px 0 25px;
+    display: block;
+    margin: 20px auto;
     overflow: auto;
 }
+/* created a placeholder invisible 6th work item so that the last row of items always lines up with the others, but when screen reaches 767px and stacks them one-per-row, change to display: none so that there isn't an extra blank space at the bottom */
+.placeholder {
+    visibility: hidden;
+}
 
-.work:nth-child(even) {
-    margin-right: 40px;
+@media screen and (max-width: 767px) {
+    .placeholder {
+      display: none;
+    }
 }
 
 .work img {
